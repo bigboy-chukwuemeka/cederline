@@ -4,13 +4,13 @@ import ActionToast from './ActionToast.jsx'
 import AdminAccessDenied, { AdminLayout } from './AdminLayout.jsx'
 import Dashboard from './Dashboard.jsx'
 import { isAdminUser } from './lib/adminAuth.js'
-import { ACCOUNT_APP_PATH, ADMIN_BASE_PATH, getAccountAppRedirectUrl } from './lib/routes.js'
+import { ACCOUNT_APP_PATH, isAdminPathname, getAccountAppRedirectUrl } from './lib/routes.js'
 import { supabase, supabaseConfigurationMessage } from './lib/supabase.js'
 
 const MAX_ID_FILE_SIZE = 10 * 1024 * 1024
 const SIGN_IN_SLOW_NOTICE_DELAY = 8000
 const SIGN_IN_TIMEOUT = 30000
-const isAdminPath = window.location.pathname === ADMIN_BASE_PATH || window.location.pathname.startsWith(`${ADMIN_BASE_PATH}/`)
+const isAdminPath = isAdminPathname()
 
 function formatUsPhoneInput(value) {
   let digits = String(value || '').replace(/\D/g, '')

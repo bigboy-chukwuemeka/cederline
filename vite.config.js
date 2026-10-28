@@ -16,7 +16,14 @@ function routeAccountAppPaths(server) {
     const pathname = separatorIndex === -1 ? request.url : request.url.slice(0, separatorIndex)
     const suffix = separatorIndex === -1 ? '' : request.url.slice(separatorIndex)
 
-    if (pathname === '/account-app' || pathname === '/account-app/' || pathname === '/account-app/admin' || pathname.startsWith('/account-app/admin/')) {
+    if (
+      pathname === '/admin' ||
+      pathname.startsWith('/admin/') ||
+      pathname === '/account-app' ||
+      pathname === '/account-app/' ||
+      pathname === '/account-app/admin' ||
+      pathname.startsWith('/account-app/admin/')
+    ) {
       request.url = `/${suffix || 'index.html'}`
     }
 
