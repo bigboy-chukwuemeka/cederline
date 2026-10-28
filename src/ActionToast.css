@@ -1,0 +1,92 @@
+.action-toast {
+  position: fixed;
+  z-index: 1200;
+  top: 1.1rem;
+  right: 1.1rem;
+  display: flex;
+  width: min(25rem, calc(100vw - 2rem));
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--status-posted-border, #c7dfb5);
+  border-radius: 0.7rem;
+  background: var(--dashboard-surface, #fff);
+  color: var(--dashboard-ink, #16251a);
+  box-shadow: 0 0.75rem 2.4rem rgb(22 37 26 / 18%);
+  animation: action-toast-enter 220ms ease-out both;
+}
+
+.action-toast--error {
+  border-color: #e6b8b3;
+}
+
+.action-toast__icon {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--account-green-light, #f7fce9);
+  color: var(--account-green-dark, #1d4900);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.action-toast--error .action-toast__icon {
+  background: #fff3f1;
+  color: #8b1a12;
+}
+
+.action-toast p {
+  flex: 1;
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.action-toast > button {
+  flex: 0 0 auto;
+  padding: 0 0.15rem;
+  border: 0;
+  background: transparent;
+  color: var(--dashboard-muted, #707070);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.action-toast.is-leaving {
+  animation: action-toast-exit 200ms ease-in both;
+}
+
+.action-toast > button:focus-visible {
+  outline: 2px solid var(--account-green, #417514);
+  outline-offset: 2px;
+}
+
+@keyframes action-toast-enter {
+  from { opacity: 0; transform: translate3d(0, -0.65rem, 0) scale(0.98); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes action-toast-exit {
+  from { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  to { opacity: 0; transform: translate3d(0, -0.35rem, 0) scale(0.98); }
+}
+
+@media (max-width: 600px) {
+  .action-toast {
+    top: 0.65rem;
+    right: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-toast,
+  .action-toast.is-leaving {
+    animation-duration: 1ms;
+  }
+}

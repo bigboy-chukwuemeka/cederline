@@ -1,0 +1,260 @@
+.admin-panel {
+  --admin-brand: #417514;
+  --admin-brand-dark: #1d4900;
+  --admin-brand-soft: #eef4e8;
+  --admin-brand-border: #d7e4c9;
+  --admin-teal: #007c8c;
+  --admin-canvas: #f5f5f5;
+  --admin-surface: #fff;
+  --admin-line: #d5d5d5;
+  --admin-text: #16251a;
+  --admin-text-muted: #707070;
+  color: var(--admin-text);
+  background: var(--admin-canvas);
+}
+
+.admin-access-denied {
+  --admin-brand: #417514;
+  --admin-brand-dark: #1d4900;
+  --admin-brand-soft: #eef4e8;
+  --admin-brand-border: #d7e4c9;
+  --admin-teal: #007c8c;
+  --admin-canvas: #f5f5f5;
+  --admin-surface: #fff;
+  --admin-line: #d5d5d5;
+  --admin-text: #16251a;
+  --admin-text-muted: #707070;
+}
+
+.admin-panel__sidebar,
+.admin-panel__topbar {
+  background: var(--admin-brand-dark);
+}
+
+.admin-panel__brand {
+  font-weight: 650;
+  letter-spacing: -.4px;
+}
+
+.admin-panel__brand-mark,
+.admin-panel__avatar {
+  background: var(--admin-brand);
+}
+
+.admin-panel__environment {
+  border-color: #4c6a2b;
+  background: rgb(255 255 255 / 4%);
+}
+
+.admin-panel__nav-link {
+  min-height: 40px;
+  border-radius: 6px;
+}
+
+.admin-panel__nav-link:hover {
+  background: #294f0b;
+}
+
+.admin-panel__nav-link--active,
+.admin-panel__nav-link--active:hover {
+  background: var(--admin-brand);
+  box-shadow: inset 3px 0 #c7dfa9;
+}
+
+.admin-panel__nav-count {
+  color: #edf6e4;
+  background: #315a16;
+}
+
+.admin-panel__search {
+  border-color: #537239;
+  background: #31551a;
+}
+
+.admin-panel__notification-button {
+  border-color: #426722;
+}
+
+.admin-panel__notification-dot {
+  background: #b7d78c;
+}
+
+.admin-panel__main {
+  zoom: 1.18;
+  background: var(--admin-canvas);
+}
+
+.admin-panel__breadcrumb {
+  color: #707070;
+}
+
+.admin-panel__page-heading {
+  margin-bottom: 22px;
+}
+
+.admin-panel__page-heading h1 {
+  color: #1d4900;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -.55px;
+}
+
+.admin-panel__page-heading p {
+  color: #646b62;
+}
+
+.admin-panel__content-placeholder,
+.admin-panel [class$="__toolbar"],
+.admin-panel [class$="__filters"],
+.admin-panel [class$="__summary"],
+.admin-panel [class$="__panel"],
+.admin-panel [class$="__table-wrap"] {
+  border-color: var(--admin-line);
+  border-radius: 9px;
+  background-color: var(--admin-surface);
+  box-shadow: 0 2px 8px rgb(29 73 0 / 3%);
+}
+
+.admin-panel [class$="__table-wrap"] {
+  overflow: auto;
+}
+
+.admin-panel [class$="__table"] {
+  border-spacing: 0;
+}
+
+.admin-panel [class$="__table"] th {
+  height: 42px;
+  border-bottom-color: #dedede;
+  color: #596057;
+  background: #f5f5f5;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .025em;
+}
+
+.admin-panel [class$="__table"] td {
+  border-bottom-color: #ededed;
+}
+
+.admin-panel [class$="__table"] tbody tr:hover td {
+  background-color: #f7faf4;
+}
+
+.admin-panel [class$="__search"]:focus-within,
+.admin-panel [class$="__select"]:focus-within,
+.admin-panel [class$="__date-filter"]:focus-within,
+.admin-panel [class$="__amount-filter"]:focus-within,
+.admin-panel [class$="__filter"]:focus-within {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.admin-panel input:focus,
+.admin-panel select:focus,
+.admin-panel textarea:focus {
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.admin-panel button:focus-visible,
+.admin-panel a:focus-visible {
+  outline: 2px solid var(--admin-teal);
+  outline-offset: 2px;
+}
+
+.admin-panel :is(
+  .admin-dashboard__queue:hover .admin-dashboard__queue-copy strong,
+  .admin-dashboard__queue-icon,
+  .admin-dashboard__metric-icon,
+  .admin-panel__placeholder-mark,
+  .admin-audit-logs__summary-icon,
+  .admin-messages__welcome-icon,
+  .admin-messages__compose-button,
+  .admin-messages__list-empty button,
+  .admin-messages__recipient-picker > label,
+  .admin-transactions__view,
+  .admin-accounts__view,
+  .admin-applications__view,
+  .admin-users__view-button,
+  .admin-users__pagination button:hover:not(:disabled),
+  .admin-applications__pagination button:hover:not(:disabled),
+  .admin-transactions__pagination button:hover:not(:disabled),
+  .admin-audit-logs__pagination button:hover:not(:disabled)
+) {
+  color: var(--admin-brand);
+}
+
+.admin-panel .admin-messages__primary-button,
+.admin-panel .admin-users__secondary-button,
+.admin-panel .admin-accounts__button--primary,
+.admin-panel .admin-applications__action--approve {
+  border-color: var(--admin-brand);
+  background: var(--admin-brand);
+}
+
+.admin-panel .admin-messages__primary-button:hover:not(:disabled),
+.admin-panel .admin-users__secondary-button:hover:not(:disabled),
+.admin-panel .admin-accounts__button--primary:hover:not(:disabled),
+.admin-panel .admin-applications__action--approve:hover:not(:disabled) {
+  border-color: var(--admin-brand-dark);
+  background: var(--admin-brand-dark);
+}
+
+.admin-panel .admin-users__lock-button:not(.admin-users__lock-button--lock),
+.admin-panel .admin-accounts__release-link,
+.admin-panel .admin-applications__approve-link,
+.admin-panel .admin-audit-logs__action {
+  color: var(--admin-brand);
+}
+
+.admin-panel .admin-audit-logs__action {
+  border-color: var(--admin-brand-border);
+  background: var(--admin-brand-soft);
+}
+
+.admin-panel .admin-messages__compose-button {
+  border-color: var(--admin-brand-border);
+  background: var(--admin-brand-soft);
+}
+
+.admin-panel .admin-messages__compose-button:hover {
+  border-color: #b2cc96;
+  background: #e6f0dc;
+}
+
+.admin-panel .admin-panel__error,
+.admin-access-denied__card {
+  border-radius: 9px;
+}
+
+.admin-access-denied__card button {
+  background: var(--admin-brand);
+}
+
+.admin-access-denied__card button:hover {
+  background: var(--admin-brand-dark);
+}
+
+@media (max-width: 900px) {
+  .admin-panel__main {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .admin-panel__main {
+    zoom: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-panel *,
+  .admin-panel *::before,
+  .admin-panel *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

@@ -1,0 +1,2 @@
+[functions.kyc-submission]
+verify_jwt = false

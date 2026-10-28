@@ -1,0 +1,145 @@
+.admin-select {
+  position: relative;
+  min-width: 138px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #59665c;
+  font: inherit;
+}
+
+.admin-select__label {
+  flex: none;
+  color: #657064;
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.admin-select__trigger {
+  min-width: 0;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 9px;
+  border: 1px solid #d5d5d5;
+  border-radius: 6px;
+  color: #263b26;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-select__trigger:hover,
+.admin-select--open .admin-select__trigger {
+  border-color: #9db582;
+  background: #fbfdf8;
+}
+
+.admin-select__trigger > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-select__trigger > svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  fill: none;
+  stroke: #61705d;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+  transition: transform .15s ease;
+}
+
+.admin-select--open .admin-select__trigger > svg {
+  transform: rotate(180deg);
+}
+
+.admin-select__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 30;
+  width: max-content;
+  min-width: 100%;
+  max-width: min(290px, calc(100vw - 32px));
+  max-height: min(320px, 60vh);
+  overflow-y: auto;
+  padding: 5px;
+  border: 1px solid #d5dfce;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgb(26 48 22 / 16%), 0 2px 6px rgb(26 48 22 / 7%);
+  animation: admin-select-enter .12s ease-out;
+}
+
+.admin-select__option {
+  width: 100%;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 5px;
+  color: #394637;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-select__option:hover,
+.admin-select__option:focus-visible {
+  outline: none;
+  color: #1d4900;
+  background: #f1f6eb;
+}
+
+.admin-select__option--selected {
+  color: #315f0c;
+  background: #eef4e8;
+  font-weight: 650;
+}
+
+.admin-select__option > svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  fill: none;
+  stroke: #417514;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+@keyframes admin-select-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-select__menu {
+    animation: none;
+  }
+
+  .admin-select__trigger > svg {
+    transition: none;
+  }
+}
