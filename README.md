@@ -14,6 +14,12 @@ Requirements: Node.js 20.19+ or 22.12+.
    your Supabase project URL and publishable (or legacy anon) key.
 4. Start the development server with `npm run dev`.
 
+For production, set `VITE_APP_URL` in the Vercel project to the deployed
+origin (for example, `https://your-app.vercel.app`). This ensures auth email
+links use the production domain even if a reset request is made from localhost.
+Add the production callback URLs, including `/reset-password` and `/admin`, to
+Supabase **Authentication → URL Configuration → Redirect URLs**.
+
 Useful commands:
 
 ```sh
@@ -125,9 +131,7 @@ put a service-role key in a `VITE_` variable or commit `.env.local`.
 
 Email confirmation redirects to the app's current route. Customer password
 recovery returns to `/reset-password`, while admin recovery returns to `/admin`.
-Add your local development URL and production URL (including `/reset-password`
-and `/admin`) to the allowed redirect URLs in Supabase **Authentication → URL
-Configuration**. The enrollment flow creates
+The enrollment flow creates
 the Supabase Auth identity and username/display-name metadata; it does not send
 tax IDs or government-ID files to Supabase Auth.
 

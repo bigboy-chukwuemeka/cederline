@@ -19,31 +19,38 @@ export function isPasswordRecoveryPath(pathname = window.location.pathname, sear
     (isAdminPathname(pathname) && new URLSearchParams(search).get('flow') === 'password-recovery')
 }
 
+function getRedirectOrigin(origin) {
+  const configuredAppUrl = import.meta.env.VITE_APP_URL?.trim()
+  return configuredAppUrl ? new URL(configuredAppUrl).origin : origin
+}
+
 export function getAccountAppRedirectUrl(origin = window.location.origin, pathname = window.location.pathname) {
+  const redirectOrigin = getRedirectOrigin(origin)
   if (isAdminPathname(pathname)) {
-    return new URL('/admin', origin).toString()
+    return new URL('/admin', redirectOrigin).toString()
   }
 
   if (pathname === ACCOUNT_APP_PATH || pathname.startsWith(`${ACCOUNT_APP_PATH}/`)) {
-    return new URL(`${ACCOUNT_APP_PATH}/`, origin).toString()
+    return new URL(`${ACCOUNT_APP_PATH}/`, redirectOrigin).toString()
   }
 
-  return new URL('/', origin).toString()
+  return new URL('/', redirectOrigin).toString()
 }
 
 export function getPasswordRecoveryRedirectUrl(origin = window.location.origin, pathname = window.location.pathname) {
+  const redirectOrigin = getRedirectOrigin(origin)
   if (isAdminPathname(pathname)) {
     const adminPath = pathname === LEGACY_ADMIN_BASE_PATH || pathname.startsWith(`${LEGACY_ADMIN_BASE_PATH}/`)
       ? LEGACY_ADMIN_BASE_PATH
       : '/admin'
-    const redirectUrl = new URL(adminPath, origin)
+    const redirectUrl = new URL(adminPath, redirectOrigin)
     redirectUrl.searchParams.set('flow', 'password-recovery')
     return redirectUrl.toString()
   }
 
   if (pathname === ACCOUNT_APP_PATH || pathname.startsWith(`${ACCOUNT_APP_PATH}/`)) {
-    return new URL(`${ACCOUNT_APP_PATH}${PASSWORD_RESET_PATH}`, origin).toString()
+    return new URL(`${ACCOUNT_APP_PATH}${PASSWORD_RESET_PATH}`, redirectOrigin).toString()
   }
 
-  return new URL(PASSWORD_RESET_PATH, origin).toString()
+  return new URL(PASSWORD_RESET_PATH, redirectOrigin).toString()
 }
