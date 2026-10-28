@@ -1,42 +1,40 @@
-# React + Vite
+# Cedarline Banking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Cedarline is a React banking application backed by Supabase. It includes
+customer authentication and banking dashboards, admin workflows, database
+migrations, and Edge Functions.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requirements: Node.js 20.19+ or 22.12+.
 
-## Website routing
+1. Install dependencies with `npm ci`.
+2. Copy `.env.example` to `.env.local`.
+3. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `.env.local` using
+   your Supabase project URL and publishable (or legacy anon) key.
+4. Start the development server with `npm run dev`.
 
-The public HTML pages are served from the site root (for example, `/` and
-`/about.html`). The React banking app is served from `/account-app/`; public
-site login links point there, and its login flow opens the dashboard after
-successful authentication. Admin pages are under `/account-app/admin/`. Static
-page assets and header links use root-relative paths so they continue to work
-from the site's nested legacy page URLs. The build also includes aliases for
-those legacy public URLs. Public links to unavailable local pages and unknown
-local header destinations lead to the responsive `/coming-soon.html` page;
-external sites, existing pages, and asset/download links remain unchanged.
+Useful commands:
 
-Run `npm run dev` or `npm run build` from this directory. The Vite configuration
-uses the parent directory as the site root and includes its static HTML pages in
-the production build alongside the React app.
+```sh
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+`.env.local`, Supabase CLI state, build output, and dependencies are excluded
+from Git. Only browser-safe Supabase settings belong in `VITE_` variables.
+Never put service-role keys, database passwords, or other secrets in frontend
+configuration.
 
 ## Supabase database
 
-The initial banking schema migration is in `supabase/migrations`. To apply it to a
-Supabase project, install the Supabase CLI, authenticate, link this directory to
-the project, then run `supabase db push`. Alternatively, run the migration SQL
-in the Supabase SQL Editor. Do not commit project credentials or service-role keys.
+The database schema and changes are in `supabase/migrations`; Edge Functions
+are in `supabase/functions`. To apply migrations, authenticate and link the
+Supabase CLI to your own project, then run `supabase db push`. Deploy Edge
+Functions separately when needed. Do not commit project credentials or
+service-role keys.
 
 The migration uses Supabase Auth (`auth.users`) as the authentication identity
 source and creates a corresponding `public.users` row automatically. Account
