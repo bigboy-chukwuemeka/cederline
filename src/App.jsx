@@ -4,7 +4,13 @@ import ActionToast from './ActionToast.jsx'
 import AdminAccessDenied, { AdminLayout } from './AdminLayout.jsx'
 import Dashboard from './Dashboard.jsx'
 import { isAdminUser } from './lib/adminAuth.js'
-import { ACCOUNT_APP_PATH, isAdminPathname, getAccountAppRedirectUrl } from './lib/routes.js'
+import {
+  ACCOUNT_APP_PATH,
+  getAccountAppRedirectUrl,
+  getPasswordRecoveryRedirectUrl,
+  isAdminPathname,
+  isPasswordRecoveryPath,
+} from './lib/routes.js'
 import { supabase, supabaseConfigurationMessage } from './lib/supabase.js'
 
 const MAX_ID_FILE_SIZE = 10 * 1024 * 1024
@@ -107,7 +113,11 @@ function dismissActionFeedback() {
 
 function App() {
   const [mode, setMode] = useState(
-    isAdminPath || window.location.pathname.startsWith(ACCOUNT_APP_PATH) ? 'sign-in' : 'welcome',
+    isPasswordRecoveryPath()
+      ? 'reset-password'
+      : isAdminPath || window.location.pathname.startsWith(ACCOUNT_APP_PATH)
+        ? 'sign-in'
+        : 'welcome',
   )
   const [authUser, setAuthUser] = useState(null)
   const [authLoading, setAuthLoading] = useState(Boolean(supabase))
@@ -161,7 +171,11 @@ function App() {
         setAuthMessageType('error')
       } else {
         setAuthUser(session?.user ?? null)
-        if (session) await continueAuthenticatedSession(session.user)
+        if (session && isPasswordRecoveryPath()) {
+          setMode('reset-password')
+        } else if (session) {
+          await continueAuthenticatedSession(session.user)
+        }
       }
       setAuthLoading(false)
     }).catch((error) => {
@@ -618,7 +632,7 @@ function App() {
     setAuthMessage('')
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(signInUsername.trim(), {
-        redirectTo: getAccountAppRedirectUrl(),
+        redirectTo: getPasswordRecoveryRedirectUrl(),
       })
       if (error) {
         setAuthMessage(getFriendlyErrorMessage(error, 'We could not send a reset link. Please try again.'))

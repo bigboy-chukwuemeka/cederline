@@ -19,6 +19,7 @@ function routeAccountAppPaths(server) {
     if (
       pathname === '/admin' ||
       pathname.startsWith('/admin/') ||
+      pathname === '/reset-password' ||
       pathname === '/account-app' ||
       pathname === '/account-app/' ||
       pathname === '/account-app/admin' ||

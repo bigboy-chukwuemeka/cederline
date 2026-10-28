@@ -1,7 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import './Dashboard.css'
 import ActionToast from './ActionToast.jsx'
-import { getAccountAppRedirectUrl } from './lib/routes.js'
+import { getPasswordRecoveryRedirectUrl } from './lib/routes.js'
 import { supabase } from './lib/supabase.js'
 
 const currentDate = new Date()
@@ -2851,7 +2851,7 @@ function ProfilePage({ authEmail, onActionFeedback, onManageAlerts, onSaveSettin
     setProfileError('')
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(authEmail, {
-        redirectTo: getAccountAppRedirectUrl(),
+        redirectTo: getPasswordRecoveryRedirectUrl(),
       })
       if (error) {
         setProfileError(error.message || 'Unable to request a password reset.')

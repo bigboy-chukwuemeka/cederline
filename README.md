@@ -123,9 +123,11 @@ Keys**. The URL in the example is for this project's ref. Restart `npm run dev`
 after changing environment values. These are browser-safe public settings; never
 put a service-role key in a `VITE_` variable or commit `.env.local`.
 
-Email confirmation and password recovery redirect to the app's current origin.
-Add your local development URL and production URL to the allowed redirect URLs
-in Supabase **Authentication → URL Configuration**. The enrollment flow creates
+Email confirmation redirects to the app's current route. Customer password
+recovery returns to `/reset-password`, while admin recovery returns to `/admin`.
+Add your local development URL and production URL (including `/reset-password`
+and `/admin`) to the allowed redirect URLs in Supabase **Authentication → URL
+Configuration**. The enrollment flow creates
 the Supabase Auth identity and username/display-name metadata; it does not send
 tax IDs or government-ID files to Supabase Auth.
 

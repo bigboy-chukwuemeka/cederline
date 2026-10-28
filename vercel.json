@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/admin", "destination": "/" },
     { "source": "/admin/:path*", "destination": "/" },
+    { "source": "/reset-password", "destination": "/" },
     { "source": "/account-app", "destination": "/" },
     { "source": "/account-app/:path*", "destination": "/" }
   ]
